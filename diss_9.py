@@ -36,26 +36,30 @@ def getEggMoves(pokemon):
     return moves
 # Task 3: Create a regex expression that will find all the times that have these formats: @2pm @5 pm @10am
 # Return a list of these times without the '@' symbol. E.g. ['2pm', '5 pm', '10am']
-'''
+
 def findLetters(sentences):
     # initialize an empty list
-    ls = []
+    words = []
+    lasts = []
 
     # define the regular expression
-    reg = r'\b@(?:{0-9}|10)\w?(?:am|pm)'
+    reg = '@((?:[1-9]|1[0-2])\s?(?:am|pm))'
 
     # loop through each sentence or phrase in sentences
     for sentence in sentences:
-        
 
     # find all the words that match the regular expression in each sentence
-       
+        temp = re.findall(reg, sentence)
 
     # loop through the found words and add the words to your empty list
-
+        words.extend(temp)
 
     #return the list of the last letter of all words that begin or end with a capital letter
-'''
+    '''for word in words:
+        if re.search('^[A-Z]', words) or re.search('[A-Z]$', words):
+            lasts.append(word[-1])
+    '''
+    return words
 
 def main():
     url = 'https://pokemondb.net/pokedex/national'
@@ -73,11 +77,11 @@ class TestAllMethods(unittest.TestCase):
 
     def test_egg_moves(self):
         self.assertEqual(getEggMoves('scizor'), ['Counter', 'Defog', 'Feint', 'Night Slash', 'Quick Guard'])
-'''
+
     def test_findLetters(self):
         self.assertEqual(findLetters(['Come eat lunch at 12','there"s a party @2pm', 'practice @7am','nothing']), ['2pm', '7am'])
         self.assertEqual(findLetters(['There is show @12pm if you want to join','I will be there @ 2pm', 'come at @3 pm will be better']), ['12pm', '3 pm'])
-'''
+
 if __name__ == "__main__":
     main()
     unittest.main(exit = False, verbosity = 2)
